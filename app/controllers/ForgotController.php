@@ -12,7 +12,10 @@ class ForgotController extends BaseController {
 		        return json_encode(['status' => 'error', 'message' => 'No user has this email']);
 		    }
 			$credentials = array('email' => $email);
-			Password::remind($credentials);
+			Password::remind($credentials, function($message)
+			{
+			    $message->subject('Password Reminder');
+			});
 			return json_encode(['status' => 'success']);
 		}
 		return json_encode(['status' => 'error', 'message' => 'Invalid email']);
