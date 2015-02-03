@@ -105,48 +105,51 @@ class EntriesController extends BaseController {
                 $db_license = NULL;
                 if($public)
                 {
-                    if(empty($license))
+                    if(isset($_ENV['AUTH_LICENSES']) && $_ENV['AUTH_LICENSES'])
                     {
-                        return json_encode(['status' => 'error', 'message' => 'Only paid users can create public annotations']);
-                    }
+                        if(empty($license))
+                        {
+                            return json_encode(['status' => 'error', 'message' => 'Only paid users can create public annotations']);
+                        }
 
-                    $json_license = json_encode($license);
-                    $db_license = License::where('license', '=', $json_license)->first();
-                    if($db_license)
-                    {
-                        if($db_license->banned_from_public)
+                        $json_license = json_encode($license);
+                        $db_license = License::where('license', '=', $json_license)->first();
+                        if($db_license)
                         {
-                            if(isset($license['is_beta']) && $license['is_beta'])
+                            if($db_license->banned_from_public)
                             {
-                                return json_encode(['status' => 'error', 'message' => "Beta users can't make public annotations"]);
-                            }
-                            return json_encode(['status' => 'error', 'message' => 'You are banned from making public annotations']);
-                        }
-                    }
-                    else
-                    {
-                        if(isset($license['is_beta']) && $license['is_beta'])
-                        {
-                            // skip check for beta users
-                        }
-                        else if(isset($license['is_app_store']) && $license['is_app_store'])
-                        {
-                            if(!DashLicenseUtil::check_itunes_receipt($license))
-                            {
-                                return json_encode(['status' => 'error', 'message' => 'Error. Couldn\'t verify your license']);
+                                if(isset($license['is_beta']) && $license['is_beta'])
+                                {
+                                    return json_encode(['status' => 'error', 'message' => "Beta users can't make public annotations"]);
+                                }
+                                return json_encode(['status' => 'error', 'message' => 'You are banned from making public annotations']);
                             }
                         }
                         else
                         {
-                            if(!DashLicenseUtil::check_license($license))
+                            if(isset($license['is_beta']) && $license['is_beta'])
                             {
-                                return json_encode(['status' => 'error', 'message' => 'Error. Couldn\'t verify your license']);
+                                // skip check for beta users
                             }
-                        }
+                            else if(isset($license['is_app_store']) && $license['is_app_store'])
+                            {
+                                if(!DashLicenseUtil::check_itunes_receipt($license))
+                                {
+                                    return json_encode(['status' => 'error', 'message' => 'Error. Couldn\'t verify your license']);
+                                }
+                            }
+                            else
+                            {
+                                if(!DashLicenseUtil::check_license($license))
+                                {
+                                    return json_encode(['status' => 'error', 'message' => 'Error. Couldn\'t verify your license']);
+                                }
+                            }
 
-                        $db_license = new License;
-                        $db_license->license = $json_license;
-                        $db_license->save();
+                            $db_license = new License;
+                            $db_license->license = $json_license;
+                            $db_license->save();
+                        }
                     }
                 }
 
