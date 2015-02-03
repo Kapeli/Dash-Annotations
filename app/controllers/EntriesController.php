@@ -632,8 +632,6 @@ class EntriesController extends BaseController {
             $body .= '</small><p></div>
                     <p>'.$body_rendered.'</P>
                     </div>
-                    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
                 </body>
             </html>';
             return ["status" => "success", "body" => $entry->body, "body_rendered" => $body, "teams" => $my_teams, "global_moderator" => $global_moderator];
