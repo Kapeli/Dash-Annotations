@@ -1,8 +1,8 @@
 <?php
 
 use \Michelf\MarkdownExtra;
-use \HTMLPurifier;
-use \HTMLPurifier_Config;
+// use \HTMLPurifier;
+// use \HTMLPurifier_Config;
 
 function in_arrayi($needle, $haystack)
 {
@@ -174,10 +174,10 @@ class EntriesController extends BaseController {
                 $entry->title = $title;
                 $entry->body = $body;
 
-                $config = HTMLPurifier_Config::createDefault();
                 $body = MarkdownExtra::defaultTransform($body);
-                $purifier = new HTMLPurifier($config);
-                $body = $purifier->purify($body);
+                // $config = HTMLPurifier_Config::createDefault();
+                // $purifier = new HTMLPurifier($config);
+                // $body = $purifier->purify($body);
                 $entry->body_rendered = $body;
 
                 $entry->public = $public;
