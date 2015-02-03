@@ -60,7 +60,7 @@ class CreateEntriesTable extends Migration {
 		Schema::create('votes', function($table)
 		{
 		    $table->increments('id');
-		    $table->tinyInteger('type', 2);
+		    $table->tinyInteger('type');
 		    $table->integer('entry_id')->unsigned();
 		    $table->foreign('entry_id')->references('id')->on('entries');
 		    $table->integer('user_id')->unsigned();
