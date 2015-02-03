@@ -178,7 +178,7 @@ class EntriesController extends BaseController {
                 // $config = HTMLPurifier_Config::createDefault();
                 // $purifier = new HTMLPurifier($config);
                 // $body = $purifier->purify($body);
-                $body = str_replace('#dashinternal', '#', $body);
+                $body = str_replace('#dashInternal', '#', $body);
                 $entry->body_rendered = $body;
 
                 $entry->public = $public;
@@ -586,9 +586,9 @@ class EntriesController extends BaseController {
                 $score = ($score < -999) ? -999 : $score;
                 $body .= '
                     <div class="vote noselect">
-                        <a class="dash-internal" href="#dashinternalvote-up"><div class="arrow-up glyphicon glyphicon-arrow-up '.$voted_up.'"></div></a>
+                        <a class="dash-internal" href="#dashInternalVoteUp"><div class="arrow-up glyphicon glyphicon-arrow-up '.$voted_up.'"></div></a>
                         <div class="score">'.$score.'</div>
-                        <a class="dash-internal" href="#dashinternalvote-down"><div class="arrow-down glyphicon glyphicon-arrow-down '.$voted_down.'"></div></a>
+                        <a class="dash-internal" href="#dashInternalVoteDown"><div class="arrow-down glyphicon glyphicon-arrow-down '.$voted_down.'"></div></a>
                     </div>';            
             }
             $body .= '
@@ -615,18 +615,18 @@ class EntriesController extends BaseController {
             $body .= ' ';
             if($user && $user->id == $entry->user_id)
             {
-                $body .= '&nbsp;<a class="dash-internal" href="#dashinternaledit"><kbd class="actions edit">Edit</kbd></a>';
-                $body .= '&nbsp;<a class="dash-internal" href="#dashinternaldelete"><kbd class="actions delete">Delete</kbd></a>';
+                $body .= '&nbsp;<a class="dash-internal" href="#dashInternalEdit"><kbd class="actions edit">Edit</kbd></a>';
+                $body .= '&nbsp;<a class="dash-internal" href="#dashInternalDelete"><kbd class="actions delete">Delete</kbd></a>';
             }
             else
             {
                 if($global_moderator && $entry->public && !$entry->removed_from_public)
                 {
-                    $body .= '&nbsp;<a class="dash-internal" href="#dashinternalremoveFromPublic"><kbd class="actions delete">Remove From Public</kbd></a>';
+                    $body .= '&nbsp;<a class="dash-internal" href="#dashInternalRemoveFromPublic"><kbd class="actions delete">Remove From Public</kbd></a>';
                 }
                 if($team_moderator)
                 {
-                    $body .= '&nbsp;<a class="dash-internal" href="#dashinternalremoveFromTeams"><kbd class="actions delete">Remove From Team';
+                    $body .= '&nbsp;<a class="dash-internal" href="#dashInternalRemoveFromTeams"><kbd class="actions delete">Remove From Team';
                     if(count($my_teams) > 1)
                     {
                         $body .= 's';
