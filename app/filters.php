@@ -11,6 +11,11 @@
 |
 */
 
+App::missing(function($exception)
+{
+    return "Nothing to see here. Move along.";
+});
+
 App::before(function($request)
 {
 	//
