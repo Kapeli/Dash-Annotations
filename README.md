@@ -1,6 +1,6 @@
 # Dash Annotations Server
 
-Follow these instructions if you want to set up your own annotation server instead of using the default one.
+Follow these instructions if you want to set up your own annotation server.
 
 ## Installation
 
@@ -28,8 +28,9 @@ return array(
 * Open `http://{your_server}/users/logout` in your browser and check if you get a JSON response that says you're not logged in
 * Let Dash know about your server by running this command in Terminal:
 
-```
+```bash
+# Repeat on every Mac that will connect to your server:
 defaults write com.kapeli.dash AnnotationsCustomServer http://{your_server}
 ```
 
-* Done! If you encounter any issues, [let me know](https://github.com/Kapeli/Dash-Annotations/issues/new)
+* If you encounter any issues, [let me know](https://github.com/Kapeli/Dash-Annotations/issues/new)!
