@@ -25,3 +25,8 @@ Route::post('entries/vote', 'EntriesController@vote');
 Route::post('entries/delete', 'EntriesController@delete');
 Route::post('entries/remove_from_public', 'EntriesController@remove_from_public');
 Route::post('entries/remove_from_teams', 'EntriesController@remove_from_teams');
+
+Route::get('/', function()
+{
+    return "Nothing to see here. Move along.";
+});
