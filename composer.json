@@ -5,8 +5,7 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"Kapeli/php-markdown": "1.4.*@dev",
-		"ezyang/htmlpurifier": "4.6.*"
+		"Kapeli/php-markdown": "1.4.*@dev"
 	},
 	"autoload": {
 		"classmap": [
