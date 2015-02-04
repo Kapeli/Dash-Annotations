@@ -10,8 +10,8 @@ class CreateTeamsTable extends Migration {
 		Schema::create('teams', function($table)
 		{
 		    $table->increments('id');
-		    $table->string('name')->unique();
-		    $table->string('access_key');
+		    $table->string('name', 191)->unique();
+		    $table->string('access_key', 500);
 		    $table->timestamps();
 		});
 		Schema::create('team_user', function($table)

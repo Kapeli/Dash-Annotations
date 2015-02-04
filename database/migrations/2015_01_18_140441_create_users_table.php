@@ -10,11 +10,11 @@ class CreateUsersTable extends Migration {
 	    Schema::create('users', function($table)
 	    {
 	        $table->increments('id');
-	        $table->string('username')->unique();
-	        $table->string('email')->nullable();
-	        $table->string('password');
+	        $table->string('username', 191)->unique();
+	        $table->string('email', 300)->nullable();
+	        $table->string('password', 500);
 	        $table->boolean('moderator');
-	        $table->string('remember_token')->nullable();
+	        $table->string('remember_token', 500)->nullable();
 	        $table->timestamps();
 	    });
 	}

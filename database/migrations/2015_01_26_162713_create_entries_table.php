@@ -10,12 +10,12 @@ class CreateEntriesTable extends Migration {
 		Schema::create('identifiers', function($table)
 		{
 		    $table->increments('id');
-		    $table->string('docset_name');
-		    $table->string('docset_filename');
-		    $table->string('docset_platform');
-		    $table->string('docset_bundle');
-		    $table->string('docset_version');
-		    $table->mediumText('page_path');
+		    $table->string('docset_name', 340);
+		    $table->string('docset_filename', 340);
+		    $table->string('docset_platform', 340);
+		    $table->string('docset_bundle', 340);
+		    $table->string('docset_version', 340);
+		    $table->longText('page_path');
 		    $table->boolean('banned_from_public');
 		    $table->timestamps();
 		});
@@ -23,7 +23,7 @@ class CreateEntriesTable extends Migration {
 		Schema::create('licenses', function($table)
 		{
 		    $table->increments('id');
-		    $table->mediumText('license');
+		    $table->longText('license');
 		    $table->boolean('banned_from_public');
 		    $table->timestamps();
 		});
@@ -31,7 +31,7 @@ class CreateEntriesTable extends Migration {
 		Schema::create('entries', function($table)
 		{
 		    $table->increments('id');
-		    $table->string('title');
+		    $table->string('title', 340);
 		    $table->longText('body');
 		    $table->longText('body_rendered');
 		    $table->string('type');
@@ -39,7 +39,7 @@ class CreateEntriesTable extends Migration {
 		    $table->foreign('identifier_id')->references('id')->on('identifiers');
 		    $table->integer('license_id')->unsigned()->nullable();
 		    $table->foreign('license_id')->references('id')->on('licenses');
-		    $table->string('anchor', 1500);
+		    $table->string('anchor', 2000);
 		    $table->integer('user_id')->unsigned();
 		    $table->foreign('user_id')->references('id')->on('users');
 		    $table->boolean('public');
