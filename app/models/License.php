@@ -1,4 +1,6 @@
-<?php 
+<?php namespace App;
+
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class License extends Eloquent {
 
@@ -6,6 +8,6 @@ class License extends Eloquent {
 
     public function entries()
     {
-        return $this->hasMany('Entry')->withTimestamps();
+        return $this->hasMany('App\Entry')->withTimestamps();
     }
 }

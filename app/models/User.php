@@ -1,28 +1,29 @@
-<?php
+<?php namespace App;
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
-	use UserTrait, RemindableTrait;
+    use Authenticatable, CanResetPassword;
 
 	protected $hidden = array('password', 'remember_token');
 
     public function teams()
     {
-        return $this->belongsToMany('Team')->withPivot('role')->withTimestamps();
+        return $this->belongsToMany('App\Team')->withPivot('role')->withTimestamps();
     }
 
     public function entries()
     {
-        return $this->hasMany('Entry')->withTimestamps();
+        return $this->hasMany('App\Entry')->withTimestamps();
     }
 
     public function votes()
     {
-        return $this->hasMany('Vote')->withTimestamps();
+        return $this->hasMany('App\Vote')->withTimestamps();
     }
 }

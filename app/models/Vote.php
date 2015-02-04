@@ -1,15 +1,17 @@
-<?php 
+<?php namespace App;
+
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Vote extends Eloquent {
 
     public function user()
     {
-        return $this->belongsTo('User')->withTimestamps();
+        return $this->belongsTo('App\User')->withTimestamps();
     }    
 
     public function entry()
     {
-        return $this->belongsTo('Entry')->withTimestamps();
+        return $this->belongsTo('App\Entry')->withTimestamps();
     }
 
 }

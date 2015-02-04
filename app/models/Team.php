@@ -1,12 +1,14 @@
-<?php 
+<?php namespace App;
 
-class Team extends Eloquent {
+use Illuminate\Database\Eloquent\Model;
+
+class Team extends Model {
 
     protected $hidden = array('access_key');
 
     public function users()
     {
-        return $this->belongsToMany('User')->withPivot('role')->withTimestamps();
+        return $this->belongsToMany('App\User')->withPivot('role')->withTimestamps();
     }
 
     public function owner()
@@ -16,7 +18,7 @@ class Team extends Eloquent {
 
     public function entries()
     {
-        return $this->belongsToMany('Entry')->withPivot('removed_from_team')->withTimestamps();
+        return $this->belongsToMany('App\Entry')->withPivot('removed_from_team')->withTimestamps();
     }
     
 }

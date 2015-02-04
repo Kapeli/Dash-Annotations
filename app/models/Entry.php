@@ -1,4 +1,6 @@
-<?php
+<?php namespace App;
+
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Entry extends Eloquent {
 
@@ -6,26 +8,26 @@ class Entry extends Eloquent {
 
     public function teams()
     {
-        return $this->belongsToMany('Team')->withPivot('removed_from_team')->withTimestamps();
+        return $this->belongsToMany('App\Team')->withPivot('removed_from_team')->withTimestamps();
     }
 
     public function user()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\User');
     }
 
     public function identifier()
     {
-        return $this->belongsTo('Identifier');
+        return $this->belongsTo('App\Identifier');
     }
 
     public function license()
     {
-        return $this->belongsTo('License');
+        return $this->belongsTo('App\License');
     }
     
     public function votes()
     {
-        return $this->hasMany('Vote')->withTimestamps();
+        return $this->hasMany('App\Vote')->withTimestamps();
     }
 }

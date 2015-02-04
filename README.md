@@ -4,21 +4,15 @@ Follow these instructions if you want to set up your own annotation server.
 
 ## Installation
 
-* Install [Laravel 4.2](http://laravel.com/docs/4.2)
+* Install [Laravel 5.0](http://laravel.com/docs/5.0)
 * Add a MySQL database called "annotations"
 * Clone this repo over your Laravel install
-* Make an `.env.php` file in the root folder of this repo that should contain this:
+* Make an `.env` file in the root folder of this repo that should contain this:
 
-```php
-<?php
-
-return array(
-
-    'MYSQL_USERNAME' => 'mysql_username',
-    'MYSQL_PASSWORD' => 'mysql_password',
-    'DEBUG' => true
-
-);
+```
+DEBUG=true
+MYSQL_USERNAME=mysql_username
+MYSQL_PASSWORD=mysql_password
 ```
 
 * Run `composer install`

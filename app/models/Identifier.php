@@ -1,4 +1,6 @@
-<?php
+<?php namespace App;
+
+use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Identifier extends Eloquent {
 
@@ -44,6 +46,6 @@ class Identifier extends Eloquent {
 
     public function entries()
     {
-        return $this->hasMany('Entry');
+        return $this->hasMany('App\Entry');
     }
 }
