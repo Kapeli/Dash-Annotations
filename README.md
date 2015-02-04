@@ -4,7 +4,7 @@ Follow these instructions if you want to set up your own annotation server.
 
 ## Installation
 
-* Install [Laravel](http://laravel.com/) on a LEMP/LAMP stack
+* Install [Laravel 4.2](http://laravel.com/docs/4.2)
 * Add a MySQL database called "annotations"
 * Clone this repo over your Laravel install
 * Make an `.env.php` file in the root folder of this repo that should contain this:
