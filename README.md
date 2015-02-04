@@ -30,7 +30,7 @@ return array(
 
 ```bash
 # Repeat on every Mac that will connect to your server:
-defaults write com.kapeli.dash AnnotationsCustomServer "http://{your_server}"
+defaults write com.kapeli.dash AnnotationsCustomServer "https://{your_server}"
 ```
 
 * If you encounter any issues, [let me know](https://github.com/Kapeli/Dash-Annotations/issues/new)!
