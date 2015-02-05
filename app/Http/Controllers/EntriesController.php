@@ -142,14 +142,14 @@ class EntriesController extends Controller {
                             {
                                 if(!DashLicenseUtil::check_itunes_receipt($license))
                                 {
-                                    return json_encode(['status' => 'error', 'message' => 'Error. Couldn\'t verify your license']);
+                                    return json_encode(['status' => 'error', 'message' => 'Invalid license. Public annotation not allowed']);
                                 }
                             }
                             else
                             {
                                 if(!DashLicenseUtil::check_license($license))
                                 {
-                                    return json_encode(['status' => 'error', 'message' => 'Error. Couldn\'t verify your license']);
+                                    return json_encode(['status' => 'error', 'message' => 'Invalid license. Public annotation not allowed']);
                                 }
                             }
 
