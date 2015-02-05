@@ -599,11 +599,11 @@ class EntriesController extends Controller {
                     </div>';            
             }
             $body .= '
-                    <div><h2 class="title">'.$entry->title.'</h2>
+                    <div><h2 class="title">'.htmlentities($entry->title, ENT_QUOTES).'</h2>
                     <p class="description"><small>';
 
             $body .= ($entry->public && !($entry->removed_from_public && $global_moderator)) ? "Public annotation " : @"Private annotation ";
-            $body .= 'by <u>'.$entry_user->username.'</u>';
+            $body .= 'by <u>'.htmlentities($entry_user->username, ENT_QUOTES).'</u>';
             $team_string = "";
             $i = 0;
             foreach($my_teams as $team)
@@ -613,7 +613,7 @@ class EntriesController extends Controller {
                 {
                     $team_string .= (count($my_teams) == $i) ? " and " : ", ";
                 }
-                $team_string .= '<u>'.$team['name'].'</u>';
+                $team_string .= '<u>'.htmlentities($team['name'], ENT_QUOTES).'</u>';
             }
             if(strlen($team_string))
             {
