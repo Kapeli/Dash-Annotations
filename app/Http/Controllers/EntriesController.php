@@ -8,8 +8,7 @@ use App\Vote;
 use App\License;
 use App\Entry;
 use \Michelf\MarkdownExtra;
-// use \HTMLPurifier;
-// use \HTMLPurifier_Config;
+use \HTML_Safe;
 
 function in_arrayi($needle, $haystack)
 {
@@ -182,9 +181,11 @@ class EntriesController extends Controller {
                 $entry->body = $body;
 
                 $body = MarkdownExtra::defaultTransform($body);
-                // $config = HTMLPurifier_Config::createDefault();
-                // $purifier = new HTMLPurifier($config);
-                // $body = $purifier->purify($body);
+                $old = error_reporting(E_ALL ^ E_DEPRECATED); // needed to get HTML_Safe to work
+                $html_safe = new HTML_Safe();
+                $html_safe->protocolFiltering = 'black';
+                $body = $html_safe->parse($body);
+                error_reporting($old);
                 $body = str_replace('#dashInternal', '#', $body);
                 $entry->body_rendered = $body;
 
@@ -418,8 +419,8 @@ class EntriesController extends Controller {
                 <head>
                     <title>".$entry->title."</title>
                     <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+                    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+                    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
                     <style>
                         /* Pygmentize theme: Friendly */
                         .highlight .hll { background-color: #ffffcc }

@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-		"Kapeli/php-markdown": "1.4.*@dev"
+		"Kapeli/php-markdown": "1.4.*@dev",
+		"pear-pear.php.net/HTML_Safe": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
@@ -47,6 +48,10 @@
 	        {
 	            "type": "vcs",
 	            "url": "https://github.com/kapeli/php-markdown"
+	        },
+	        {
+	            "type": "pear",
+	            "url": "http://pear.php.net"
 	        }
 	    ],
     "minimum-stability": "stable"
