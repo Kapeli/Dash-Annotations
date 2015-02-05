@@ -515,6 +515,7 @@ class EntriesController extends Controller {
 
                         p.description {
                             padding-bottom:2px;
+                            margin-top:3px;
                         }
 
                         .vote {
@@ -523,6 +524,7 @@ class EntriesController extends Controller {
                             text-align: center;
                             height:64px;
                             margin-left:-10px;
+                            margin-top:1px;
                         }
 
                         .score {
