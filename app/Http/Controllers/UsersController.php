@@ -5,8 +5,8 @@ use App\User;
 
 class UsersController extends Controller {
 
-	public function register()
-	{
+    public function register()
+    {
         $validator = Validator::make(Input::all(), [
             "username" => ["required", "unique:users,username"],
             "password" => "required"
@@ -27,7 +27,7 @@ class UsersController extends Controller {
             return json_encode(['status' => 'error', 'message' => 'Username already taken']);
         }
         return json_encode(['status' => 'error']);
-	}
+    }
 
     public function login()
     {
