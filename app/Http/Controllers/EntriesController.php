@@ -192,7 +192,7 @@ class EntriesController extends Controller {
                         if($end !== FALSE)
                         {
                             $lexer = substr($message, $start, $end-$start);
-                            return json_encode(['status' => 'error', 'message' => 'Unknown syntax highlighting: "'.$lexer.'"']);
+                            return json_encode(['status' => 'error', 'message' => 'Unknown syntax highlighting: '.$lexer]);
                         }
                     }
                     throw $e;
