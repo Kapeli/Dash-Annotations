@@ -105,7 +105,7 @@ class EntriesController extends Controller {
             $anchor = Input::get('anchor');
             $entry_id = Input::get('entry_id');
             $user = Auth::user();
-
+            
             if(!empty($title) && !empty($body) && !empty($type) && !empty($identifier_dict) && !empty($anchor))
             {
                 $db_license = NULL;
@@ -180,7 +180,23 @@ class EntriesController extends Controller {
                 $entry->title = $title;
                 $entry->body = $body;
 
-                $body = MarkdownExtra::defaultTransform($body);
+                try {
+                    $body = MarkdownExtra::defaultTransform($body);
+                } catch (\RuntimeException $e) {
+                    $message = $e->getMessage();
+                    $start = strpos($message, 'no lexer for alias \'');
+                    if($start !== FALSE)
+                    {
+                        $start += 20;
+                        $end = strpos($message, '\'', $start);
+                        if($end !== FALSE)
+                        {
+                            $lexer = substr($message, $start, $end-$start);
+                            return json_encode(['status' => 'error', 'message' => 'Unknown syntax highlighting: "'.$lexer.'"']);
+                        }
+                    }
+                    throw $e;
+                }
                 $old = error_reporting(E_ALL ^ E_DEPRECATED); // needed to get HTML_Safe to work
                 $html_safe = new HTML_Safe();
                 $html_safe->protocolFiltering = 'black';

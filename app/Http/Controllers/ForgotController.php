@@ -23,7 +23,7 @@ class ForgotController extends Controller {
 			$credentials = array('email' => $email);
 			$response = $this->passwords->sendResetLink($credentials, function($message)
 			{
-			    $message->subject('Password Reminder');
+			    $message->subject('Password Reset');
 			});
 			switch ($response)
 			{
