@@ -438,6 +438,16 @@ class EntriesController extends Controller {
                     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
                     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
                     <style>
+                        code {
+                            color: black;
+                            background-color: #f5f5f5;
+                            border-radius: 4px;
+                            border: 1px solid #ccc;
+                        }
+                        pre code {
+                            border: none;
+                        }
+
                         /* Pygmentize theme: Friendly */
                         .highlight .hll { background-color: #ffffcc }
                         .highlight .c { color: #60a0b0; font-style: italic } /* Comment */
