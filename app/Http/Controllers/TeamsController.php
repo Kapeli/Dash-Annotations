@@ -36,7 +36,7 @@ class TeamsController extends Controller {
         if(Auth::check())
         {
             $name = Input::get('name');
-            if(!empty($name))
+            if($name !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
                 if($team)
@@ -61,7 +61,7 @@ class TeamsController extends Controller {
         {
             $name = Input::get('name');
             $toRemove = Input::get('username');
-            if(!empty($name))
+            if($name !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
                 if($team && $team->owner() && $team->owner()->id == Auth::user()->id)
@@ -93,12 +93,12 @@ class TeamsController extends Controller {
         {
             $name = Input::get('name');
             $access_key = Input::get('access_key');
-            if(!empty($name))
+            if($name !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
                 if($team)
                 {
-                    if((empty($team->access_key) && empty($access_key)) || Hash::check($access_key, $team->access_key))
+                    if(($team->access_key == '' && $access_key == '') || Hash::check($access_key, $team->access_key))
                     {
                         if($team->users()->where('user_id', '=', Auth::user()->id)->first())
                         {
@@ -121,12 +121,12 @@ class TeamsController extends Controller {
         {
             $name = Input::get('name');
             $key = Input::get('access_key');
-            if(!empty($name))
+            if($name !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
                 if($team && $team->owner() && $team->owner()->id == Auth::user()->id)
                 {
-                    if(!empty($key))
+                    if($key !== '')
                     {
                         $key = Hash::make($key);
                     }
@@ -147,7 +147,7 @@ class TeamsController extends Controller {
             $name = Input::get('name');
             $username = Input::get('username');
             $role = Input::get('role');
-            if(!empty($name) && !empty($role) && !empty($username))
+            if($name !== '' && $role !== '' && $username !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
                 if($team && $team->owner() && $team->owner()->id == Auth::user()->id)
@@ -184,7 +184,7 @@ class TeamsController extends Controller {
         if(Auth::check())
         {
             $name = Input::get('name');
-            if(!empty($name))
+            if($name !== '')
             {
                 $members = array();
                 $team = Team::where('name', '=', $name)->first();

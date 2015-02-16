@@ -106,7 +106,7 @@ class EntriesController extends Controller {
             $entry_id = Input::get('entry_id');
             $user = Auth::user();
             
-            if(!empty($title) && !empty($body) && !empty($type) && !empty($identifier_dict) && !empty($anchor))
+            if($title !== '' && $body !== '' && $type !== '' && !empty($identifier_dict) && $anchor !== '')
             {
                 $db_license = NULL;
                 if($public)
