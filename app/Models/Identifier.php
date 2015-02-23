@@ -41,6 +41,7 @@ class Identifier extends Eloquent {
         $page_path = preg_replace('/[0-9]+\.*[0-9]+(\.*[0-9]+)*/', '', $page_path); // remove versions
         $page_path = preg_replace('/[0-9]+_*[0-9]+(_*[0-9]+)*/', '', $page_path); // remove retarded versions that use _ instead of . (SQLAlchemy!)
         $page_path = str_replace(range(0,9), '', $page_path); // remove all numbers
+        $page_path = str_replace(['/-alpha/', '/-alpha./', '/-alpha-/', '/-beta/', '/-beta./', '/-beta-/', '/-rc/', '/-rc./', '/-rc-/', '/.alpha/', '/.alpha./', '/.alpha-/', '/.beta/', '/.beta./', '/.beta-/', '/.rc/', '/.rc./', '/.rc-/'], '/', $page_path);
         $page_path = remove_prefix("www.", $page_path); // remove "www." for online-cloned docsets
         $page_path = trim(str_replace('//', '/', $page_path));
         $page_path .= $basename;
