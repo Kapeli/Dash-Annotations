@@ -38,8 +38,9 @@ class Identifier extends Eloquent {
         $basename = basename($page_path);
         $page_path = substr($page_path, 0, strlen($page_path)-strlen($basename));
         $basename = str_replace(['-2.html', '-3.html', '-4.html', '-5.html', '-6.html', '-7.html', '-8.html', '-9.html'], '.html', $basename);
-        $page_path = preg_replace('/[0-9]+\.*[0-9]+(\.*[0-9]+)*/', '', $page_path); // remove versions
-        $page_path = preg_replace('/[0-9]+_*[0-9]+(_*[0-9]+)*/', '', $page_path); // remove retarded versions that use _ instead of . (SQLAlchemy!)
+        $page_path = preg_replace('/v[0-9]+\.*[0-9]+(\.*[0-9]+)*/', '', $page_path); // remove versions like /v1.1.0/
+        $page_path = preg_replace('/[0-9]+\.*[0-9]+(\.*[0-9]+)*/', '', $page_path); // remove versions like /1.1.0/
+        $page_path = preg_replace('/[0-9]+_*[0-9]+(_*[0-9]+)*/', '', $page_path); // remove versions that use _ instead of . (SQLAlchemy)
         $page_path = str_replace(range(0,9), '', $page_path); // remove all numbers
         $page_path = str_replace(['/-alpha/', '/-alpha./', '/-alpha-/', '/-beta/', '/-beta./', '/-beta-/', '/-rc/', '/-rc./', '/-rc-/', '/.alpha/', '/.alpha./', '/.alpha-/', '/.beta/', '/.beta./', '/.beta-/', '/.rc/', '/.rc./', '/.rc-/'], '/', $page_path);
         $page_path = remove_prefix("www.", $page_path); // remove "www." for online-cloned docsets
