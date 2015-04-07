@@ -443,7 +443,7 @@ class EntriesController extends Controller {
                             background-color: #f5f5f5;
                             border-radius: 4px;
                             border: 1px solid #ccc;
-                            padding: 1px 4px;
+                            padding: 1px 5px;
                         }
                         pre code {
                             border: none;
