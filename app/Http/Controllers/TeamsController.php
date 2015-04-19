@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use Validator, Input, Auth, Hash;
+use Validator, Request, Auth, Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Team;
 
@@ -10,13 +10,13 @@ class TeamsController extends Controller {
     {
         if(Auth::check())
         {
-            $validator = Validator::make(Input::all(), [
+            $validator = Validator::make(Request::all(), [
                 "name" => ["required", "unique:teams,name"],
             ]);
 
             if($validator->passes()) 
             {
-                $name = Input::get('name');
+                $name = Request::input('name');
                 $team = new Team;
                 $team->name = $name;
                 Auth::user()->teams()->save($team, array('role' => 'owner'));
@@ -35,7 +35,7 @@ class TeamsController extends Controller {
     {
         if(Auth::check())
         {
-            $name = Input::get('name');
+            $name = Request::input('name');
             if($name !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
@@ -59,8 +59,8 @@ class TeamsController extends Controller {
     {
         if(Auth::check())
         {
-            $name = Input::get('name');
-            $toRemove = Input::get('username');
+            $name = Request::input('name');
+            $toRemove = Request::input('username');
             if($name !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
@@ -91,8 +91,8 @@ class TeamsController extends Controller {
     {
         if(Auth::check())
         {
-            $name = Input::get('name');
-            $access_key = Input::get('access_key');
+            $name = Request::input('name');
+            $access_key = Request::input('access_key');
             if($name !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
@@ -119,8 +119,8 @@ class TeamsController extends Controller {
     {
         if(Auth::check())
         {
-            $name = Input::get('name');
-            $key = Input::get('access_key');
+            $name = Request::input('name');
+            $key = Request::input('access_key');
             if($name !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
@@ -144,9 +144,9 @@ class TeamsController extends Controller {
     {
         if(Auth::check())
         {
-            $name = Input::get('name');
-            $username = Input::get('username');
-            $role = Input::get('role');
+            $name = Request::input('name');
+            $username = Request::input('username');
+            $role = Request::input('role');
             if($name !== '' && $role !== '' && $username !== '')
             {
                 $team = Team::where('name', '=', $name)->first();
@@ -183,7 +183,7 @@ class TeamsController extends Controller {
     {
         if(Auth::check())
         {
-            $name = Input::get('name');
+            $name = Request::input('name');
             if($name !== '')
             {
                 $members = array();

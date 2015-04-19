@@ -1,23 +1,18 @@
 <?php namespace App\Http\Controllers;
 
-use Auth, Input, Hash;
+use Auth, Request, Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Contracts\Auth\PasswordBroker;
-use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Contracts\Auth\Guard;
 
 class ForgotController extends Controller {
-	use ResetsPasswords;
-
-	public function __construct(Guard $auth, PasswordBroker $passwords)
+	public function __construct(PasswordBroker $passwords)
 	{
-		$this->auth = $auth;
 		$this->passwords = $passwords;
 	}
 
 	public function request()
 	{
-		$email = Input::get('email');
+		$email = Request::input('email');
 		if(!empty($email))
 		{
 			$credentials = array('email' => $email);
@@ -40,7 +35,7 @@ class ForgotController extends Controller {
 	public function reset()
 	{
 
-		$email = Input::get('email');
+		$email = Request::input('email');
 		if(!empty($email))
 		{
 		    $user = User::where('email', '=', $email)->first();
@@ -51,7 +46,7 @@ class ForgotController extends Controller {
 		    else
 		    {
 		    	$username = $user->username;
-		    	$credentials = Input::only(
+		    	$credentials = Request::only(
 		    	      'email', 'password', 'token'
 		    	);
 		    	$credentials['password_confirmation'] = $credentials['password'];

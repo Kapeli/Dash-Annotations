@@ -1,21 +1,21 @@
 <?php namespace App\Http\Controllers;
 
-use Validator, Input, Auth, Hash;
+use Validator, Request, Auth, Illuminate\Support\Facades\Hash;
 use App\User;
 
 class UsersController extends Controller {
 
     public function register()
     {
-        $validator = Validator::make(Input::all(), [
+        $validator = Validator::make(Request::all(), [
             "username" => ["required", "unique:users,username"],
             "password" => "required"
         ]);
 
         if($validator->passes()) 
         {
-            $username = Input::get('username');
-            $password = Input::get('password');
+            $username = Request::input('username');
+            $password = Request::input('password');
             $user = new User;
             $user->username = $username;
             $user->password = Hash::make($password);
@@ -31,7 +31,7 @@ class UsersController extends Controller {
 
     public function login()
     {
-        $validator = Validator::make(Input::all(), [
+        $validator = Validator::make(Request::all(), [
             "username" => "required",
             "password" => "required"
         ]);
@@ -39,8 +39,8 @@ class UsersController extends Controller {
         if($validator->passes()) 
         {
             $credentials = [
-                "username" => Input::get("username"),
-                "password" => Input::get("password")
+                "username" => Request::input("username"),
+                "password" => Request::input("password")
             ];
             if(Auth::attempt($credentials, true)) 
             {
@@ -65,7 +65,7 @@ class UsersController extends Controller {
         if(Auth::check())
         {
             $user = Auth::user();
-            $email = Input::get('email');
+            $email = Request::input('email');
             if(!empty($email))
             {
                 $testUser = User::where('email', '=', $email)->first();
@@ -86,7 +86,7 @@ class UsersController extends Controller {
         if(Auth::check())
         {
             $user = Auth::user();
-            $password = Input::get('password');
+            $password = Request::input('password');
             $user->password = Hash::make($password);
             $user->save();
             return json_encode(['status' => 'success']);

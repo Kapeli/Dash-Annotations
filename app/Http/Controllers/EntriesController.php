@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use Validator, Input, Auth, Hash;
+use Validator, Request, Auth, Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Team;
 use App\Identifier;
@@ -19,7 +19,7 @@ class EntriesController extends Controller {
     public function list_entries()
     {
         $minimum_public_score = -5;
-        $identifier_dict = Input::get('identifier');
+        $identifier_dict = Request::input('identifier');
         $identifier = Identifier::IdentifierFromDictionary($identifier_dict)->find_in_db();
         if($identifier)
         {
@@ -95,15 +95,15 @@ class EntriesController extends Controller {
     {
         if(Auth::check())
         {
-            $title = Input::get('title');
-            $body = Input::get('body');
-            $public = Input::get('public');
-            $type = Input::get('type');
-            $teams = Input::get('teams');
-            $license = Input::get('license');
-            $identifier_dict = Input::get('identifier');
-            $anchor = Input::get('anchor');
-            $entry_id = Input::get('entry_id');
+            $title = Request::input('title');
+            $body = Request::input('body');
+            $public = Request::input('public');
+            $type = Request::input('type');
+            $teams = Request::input('teams');
+            $license = Request::input('license');
+            $identifier_dict = Request::input('identifier');
+            $anchor = Request::input('anchor');
+            $entry_id = Request::input('entry_id');
             $user = Auth::user();
             
             if($title !== '' && $body !== '' && $type !== '' && !empty($identifier_dict) && $anchor !== '')
@@ -197,11 +197,9 @@ class EntriesController extends Controller {
                     }
                     throw $e;
                 }
-                $old = error_reporting(E_ALL ^ E_DEPRECATED); // needed to get HTML_Safe to work
                 $html_safe = new HTML_Safe();
                 $html_safe->protocolFiltering = 'black';
                 $body = $html_safe->parse($body);
-                error_reporting($old);
                 $body = str_replace('#dashInternal', '#', $body);
                 $entry->body_rendered = $body;
 
@@ -262,7 +260,7 @@ class EntriesController extends Controller {
     {
         if(Auth::check())
         {
-            $entry_id = Input::get('entry_id');
+            $entry_id = Request::input('entry_id');
             $entry = Entry::where('id', '=', $entry_id)->first();
             $user = Auth::user();
             if($entry && $entry->user_id == $user->id)
@@ -283,7 +281,7 @@ class EntriesController extends Controller {
             $user = Auth::user();
             if($user->moderator)
             {
-                $entry_id = Input::get('entry_id');
+                $entry_id = Request::input('entry_id');
                 $entry = Entry::where('id', '=', $entry_id)->first();
                 if($entry)
                 {
@@ -301,7 +299,7 @@ class EntriesController extends Controller {
         if(Auth::check())
         {
             $user = Auth::user();
-            $entry_id = Input::get('entry_id');
+            $entry_id = Request::input('entry_id');
             $entry = Entry::where('id', '=', $entry_id)->first();
             if($entry)
             {
@@ -329,8 +327,8 @@ class EntriesController extends Controller {
     {
         if(Auth::check())
         {
-            $entry_id = Input::get('entry_id');
-            $vote_type = Input::get('vote_type');
+            $entry_id = Request::input('entry_id');
+            $vote_type = Request::input('vote_type');
             $entry = Entry::where('id', '=', $entry_id)->first();
             if($entry)
             {
@@ -383,7 +381,7 @@ class EntriesController extends Controller {
 
     public function get()
     {
-        $entry_id = Input::get('entry_id');
+        $entry_id = Request::input('entry_id');
         $entry = Entry::where('id', '=', $entry_id)->first();
         if($entry)
         {

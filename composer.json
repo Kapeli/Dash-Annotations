@@ -1,58 +1,59 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
-	"license": "MIT",
-	"type": "project",
-	"require": {
-		"laravel/framework": "5.0.*",
-		"Kapeli/php-markdown": "1.4.*@dev",
-		"pear-pear.php.net/HTML_Safe": "*"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "~4.0",
-		"phpspec/phpspec": "~2.1"
-	},
-	"autoload": {
-		"classmap": [
-			"database",
-			"app/Models/"
-		],
-		"psr-4": {
-			"App\\": "app/"
-		}
-	},
-	"autoload-dev": {
-		"classmap": [
-			"tests/TestCase.php"
-		]
-	},
-	"scripts": {
-		"post-install-cmd": [
-			"php artisan clear-compiled",
-			"php artisan optimize"
-		],
-		"post-update-cmd": [
-			"php artisan clear-compiled",
-			"php artisan optimize"
-		],
-		"post-create-project-cmd": [
-			"php -r \"copy('.env.example', '.env');\"",
-			"php artisan key:generate"
-		]
-	},
-	"config": {
-		"preferred-install": "dist"
-	},
-	"repositories": [
-	        {
-	            "type": "vcs",
-	            "url": "https://github.com/kapeli/php-markdown"
-	        },
-	        {
-	            "type": "pear",
-	            "url": "http://pear.php.net"
-	        }
-	    ],
-    "minimum-stability": "stable"
+    "name": "laravel/lumen",
+    "description": "The Laravel Lumen Framework.",
+    "keywords": ["framework", "laravel", "lumen"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "laravel/lumen-framework": "5.0.*",
+        "illuminate/mail": "5.0.*",
+        "vlucas/phpdotenv": "~1.0",
+        "Kapeli/php-markdown": "1.4.*@dev",
+        "pear/html_safe": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "database/",
+            "app/Models/"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    },
+    "include-path": [
+        "vendor/pear/xml_htmlsax3"
+        ],
+    "repositories": [
+            {
+                "type": "vcs",
+                "url": "https://github.com/kapeli/php-markdown"
+            },
+            {
+                "type": "vcs",
+                "url": "https://github.com/pear/HTML_Safe"
+            },
+            {
+                "type": "package",
+                "package": {
+                    "name": "pear/xml_htmlsax3",
+                    "version": "3.0.0",
+                    "source": {
+                        "url": "https://github.com/pear/XML_HTMLSax3",
+                        "type": "git",
+                        "reference": "origin/master"
+                    }
+                }
+            }
+        ],
+    "config": {
+        "preferred-install": "dist"
+    }
 }

@@ -4,17 +4,10 @@ Follow these instructions if you want to set up your own annotation server.
 
 ## Installation
 
-* Install [Laravel 5.0](http://laravel.com/docs/5.0)
+* Install [Lumen](http://lumen.laravel.com/docs/installation)
 * Add a MySQL database called "annotations"
-* Clone this repo over your Laravel install
-* Make an `.env` file in the root folder of this repo that should contain this:
-
-```
-DEBUG=true
-MYSQL_USERNAME=mysql_username
-MYSQL_PASSWORD=mysql_password
-```
-
+* Clone this repo over your Lumen install
+* Rename the `.env.example` file to `.env` and edit it
 * Run `composer install`
 * Install Python and [Pygments](http://pygments.org/) (used for syntax highlighting)
   * Make sure `/bin/pygmentize` exists. If it doesn't, add a link between `/bin/pygmentize` to wherever you installed Pygments
