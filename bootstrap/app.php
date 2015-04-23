@@ -91,10 +91,4 @@ $app->middleware([
 
 require __DIR__.'/../app/Http/routes.php';
 
-set_error_handler(function ($level, $message, $file = '', $line = 0) {
-    if (error_reporting() & $level) {
-        throw new ErrorException($message, 0, $level, $file, $line);
-    }
-});
-
 return $app;
