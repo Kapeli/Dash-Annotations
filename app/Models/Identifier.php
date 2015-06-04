@@ -22,6 +22,8 @@ class Identifier extends Eloquent {
         $identifier->docset_bundle = $dict['docset_bundle'];
         $identifier->docset_version = $dict['docset_version'];
         $identifier->page_path = $dict['page_path'];
+        $identifier->page_title = (array_key_exists('page_title', $dict)) ? $dict['page_title'] : '';
+        $identifier->httrack_source = (array_key_exists('httrack_source', $dict)) ? $dict['httrack_source'] : '';
         $identifier->trim();
         return $identifier;
     }
@@ -55,6 +57,13 @@ class Identifier extends Eloquent {
         $toMatch = ['docset_filename' => $this->docset_filename,
                     'page_path' => $this->page_path,
                    ];
+
+        if($this->docset_filename == "Mono" && !empty($this->httrack_source))
+        {
+            $toMatch = ['docset_filename' => $this->docset_filename,
+                        'httrack_source' => $this->httrack_source,
+                       ];
+        }
         return Identifier::where($toMatch)->first();
     }
 

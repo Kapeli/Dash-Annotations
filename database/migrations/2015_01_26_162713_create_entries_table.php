@@ -16,6 +16,8 @@ class CreateEntriesTable extends Migration {
 		    $table->string('docset_bundle', 340);
 		    $table->string('docset_version', 340);
 		    $table->longText('page_path');
+		    $table->string('page_title', 340);
+		    $table->longText('httrack_source');
 		    $table->boolean('banned_from_public');
 		    $table->timestamps();
 		});
