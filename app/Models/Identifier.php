@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-function remove_prefix($prefix, $string)
+function remove_prefix($string, $prefix)
 {
     if(substr(strtolower($string), 0, strlen($prefix)) == strtolower($prefix)) 
     {
@@ -46,7 +46,7 @@ class Identifier extends Eloquent {
         $page_path = preg_replace('/[0-9]+_*[0-9]+(_*[0-9]+)*/', '', $page_path); // remove versions that use _ instead of . (SQLAlchemy)
         $page_path = str_replace(range(0,9), '', $page_path); // remove all numbers
         $page_path = str_replace(['/-alpha/', '/-alpha./', '/-alpha-/', '/-beta/', '/-beta./', '/-beta-/', '/-rc/', '/-rc./', '/-rc-/', '/.alpha/', '/.alpha./', '/.alpha-/', '/.beta/', '/.beta./', '/.beta-/', '/.rc/', '/.rc./', '/.rc-/'], '/', $page_path);
-        $page_path = remove_prefix("www.", $page_path); // remove "www." for online-cloned docsets
+        $page_path = remove_prefix($page_path, "www."); // remove "www." for online-cloned docsets
         $page_path = trim(str_replace('//', '/', $page_path));
         $page_path .= $basename;
         $this->page_path = $page_path;
