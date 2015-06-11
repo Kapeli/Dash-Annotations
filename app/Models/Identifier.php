@@ -38,6 +38,7 @@ class Identifier extends Eloquent {
         
         $page_path = $this->page_path;
         $page_path = str_replace("https://", "http://", $page_path);
+        $page_path = str_replace("swiftdoc.org/swift-2/", "swiftdoc.org/", $page_path);
         $basename = basename($page_path);
         $page_path = substr($page_path, 0, strlen($page_path)-strlen($basename));
         $basename = str_replace(['-2.html', '-3.html', '-4.html', '-5.html', '-6.html', '-7.html', '-8.html', '-9.html'], '.html', $basename);
