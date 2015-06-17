@@ -1,6 +1,7 @@
 /lumen.log
 /vendor
 .env
+.env.production
 /node_modules
 /bootstrap/compiled.php
 .env.*.php
