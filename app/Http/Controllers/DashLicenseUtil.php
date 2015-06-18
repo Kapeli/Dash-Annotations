@@ -57,11 +57,11 @@ EOD;
                 $json_source = substr($res, stripos($res, "\r\n\r\n{") + 4);
                 $app_store_response_map = json_decode($json_source);
                 $app_store_response_status = $app_store_response_map->{'status'};
-                if($app_store_response_status == 0 && strcmp(trim($app_store_response_map->receipt->bundle_id), "com.kapeli.dash") == 0)
+                if($app_store_response_status == 0 && strcmp(trim($app_store_response_map->receipt->bundle_id), "com.kapeli.dashdoc") == 0)
                 {
                     foreach($app_store_response_map->receipt->in_app as $in_app)
                     {
-                        if(strcmp(trim($in_app->product_id), "DPinky") == 0)
+                        if(strcmp(trim($in_app->product_id), "FullVersion") == 0)
                         {
                             return true;
                         }
