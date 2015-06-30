@@ -31,29 +31,18 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 * Create the database: `ssh -t dokku@{your_server} mariadb:create dash-db`
 * Link database: `ssh -t dokku@{your_server} mariadb:link dash dash-db`
 * Get the database credentials: `ssh -t dokku@{your_server} mariadb:info dash dash-db`
-	> *Results*
-
-
-	```
-	echo "Host: mariadb"
-	echo "User: dash
-	echo "Password: eDFjklLgKroVme4d"
-	echo "Database: dash-db"
-	echo
-	echo "MARIADB_URL=mysql2://dash:eDFjklLgKroVme4d@mariadb:3306/dash-db"
-	```
 * Create environmental variables:
 	```
 	ssh -t dokku@{your_server} config:set dash \
 	APP_ENV=production \
 	APP_FALLBACK_LOCAL=en \
-	APP_KEY=SomeRandom32CharacterKey \
+	APP_KEY=SomeRandomKey! \
 	APP_LOCALE=en \
 	CACHE_DRIVER=file \
 	DB_CONNECTION=mysql \
 	DB_DATABASE=dash-db \
 	DB_HOST=mariadb \
-	DB_PASSWORD=eDFjklLgKroVme4d \
+	DB_PASSWORD=YourPassword \
 	DB_USERNAME=dash \
 	QUEUE_DRIVER=file \
 	SESSION_DRIVER=file
@@ -64,7 +53,7 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 * Get your server's URL: `ssh -t dokku@{your_server}  url dash`
 > *Results*: `http://dash.{your_server}`
 
-* Open http://dash.mydokku.com/users/logout in your browser and check if you get a JSON response that says you're not logged in
+* Open http://dash.{your_server}/users/logout in your browser and check if you get a JSON response that says you're not logged in
 
 * Let Dash know about your server by running this command in Terminal:
 
