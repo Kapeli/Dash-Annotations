@@ -57,13 +57,13 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 	SESSION_DRIVER=file
 	```
 	
-* Push to dokku: `git push dokku`
+* Push to dokku: `git push dokku dokku:master`
 
 * Get your server's URL: `ssh -t dokku@mydokku.com  url dash`
-> *Results*
+> *Results*: `http://dash.mydokku.com`
 
 
- `http://dash.mydokku.com`
+* Open http://dash.mydokku.com/users/logout in your browser and check if you get a JSON response that says you're not logged in
 
 ```bash
 # Repeat on every Mac that will connect to your server:
