@@ -20,29 +20,31 @@ Follow these instructions if you want to set up your own annotation server.
 defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_server}"
 ```
 
+* If you encounter any issues, [let me know](https://github.com/Kapeli/Dash-Annotations/issues/new)!
+
 ### Dokku
 > https://github.com/dokku-alt/dokku-alt
 
 * Checkout dokku branch `git checkout dokku`
-* Create remote for dokku `git remote add REMOTE_NAME dokku@REMOTE_DNS_NAME:APP_NAME` (e.g. `git remote add dokku dokku@mydokku.com:dash`).
-* Create the app: `ssh -t dokku@mydokku.com create dash`
-* Create the database: `ssh -t dokku@mydokku.com mariadb:create dash-db`
-* Link database: `ssh -t dokku@mydokku.com mariadb:link dash dash-db`
-* Get the database credentials: `ssh -t dokku@mydokku.com mariadb:info dash dash-db`
+* Create remote for dokku `git remote add REMOTE_NAME dokku@REMOTE_DNS_NAME:APP_NAME` (e.g. `git remote add dokku dokku@{your_server}:dash`).
+* Create the app: `ssh -t dokku@{your_server} create dash`
+* Create the database: `ssh -t dokku@{your_server} mariadb:create dash-db`
+* Link database: `ssh -t dokku@{your_server} mariadb:link dash dash-db`
+* Get the database credentials: `ssh -t dokku@{your_server} mariadb:info dash dash-db`
 	> *Results*
 
 
 	```
-	echo "       Host: mariadb"
-	echo "       User: dash
-	echo "       Password: eDFjklLgKroVme4d"
-	echo "       Database: dash-db"
+	echo "Host: mariadb"
+	echo "User: dash
+	echo "Password: eDFjklLgKroVme4d"
+	echo "Database: dash-db"
 	echo
-	echo "       MARIADB_URL=mysql2://dash:eDFjklLgKroVme4d@mariadb:3306/dash-db"
+	echo "MARIADB_URL=mysql2://dash:eDFjklLgKroVme4d@mariadb:3306/dash-db"
 	```
 * Create environmental variables:
 	```
-	ssh -t dokku@mydokku.com config:set dash \
+	ssh -t dokku@{your_server} config:set dash \
 	APP_ENV=production \
 	APP_FALLBACK_LOCAL=en \
 	APP_KEY=SomeRandom32CharacterKey \
@@ -59,14 +61,16 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 	
 * Push to dokku: `git push dokku dokku:master`
 
-* Get your server's URL: `ssh -t dokku@mydokku.com  url dash`
-> *Results*: `http://dash.mydokku.com`
+* Get your server's URL: `ssh -t dokku@{your_server}  url dash`
+> *Results*: `http://dash.{your_server}`
 
 * Open http://dash.mydokku.com/users/logout in your browser and check if you get a JSON response that says you're not logged in
 
+* Let Dash know about your server by running this command in Terminal:
+
 ```bash
 # Repeat on every Mac that will connect to your server:
-defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_server}"
+defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://dash.{your_server}"
 ```
 
 * If you encounter any issues, [let me know](https://github.com/Kapeli/Dash-Annotations/issues/new)!
