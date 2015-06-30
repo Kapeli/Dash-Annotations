@@ -25,8 +25,8 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 ### Dokku
 > https://github.com/dokku-alt/dokku-alt
 
-* Checkout dokku branch `git checkout dokku`
-* Create remote for dokku `git remote add REMOTE_NAME dokku@REMOTE_DNS_NAME:APP_NAME` (e.g. `git remote add dokku dokku@{your_server}:dash`).
+* Clone this repo
+* Create remote for dokku: `git remote add dokku dokku@{your_server}:dash`
 * Create the app: `ssh -t dokku@{your_server} create dash`
 * Create the database: `ssh -t dokku@{your_server} mariadb:create dash-db`
 * Link database: `ssh -t dokku@{your_server} mariadb:link dash dash-db`
@@ -49,12 +49,8 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 	```
 	
 * Push to dokku: `git push dokku dokku:master`
-
 * Get your server's URL: `ssh -t dokku@{your_server}  url dash`
-> *Results*: `http://dash.{your_server}`
-
 * Open `http://dash.{your_server}/users/logout` in your browser and check if you get a JSON response that says you're not logged in
-
 * Let Dash know about your server by running this command in Terminal:
 
 ```bash
