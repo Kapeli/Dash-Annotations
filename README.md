@@ -53,7 +53,7 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 * Get your server's URL: `ssh -t dokku@{your_server}  url dash`
 > *Results*: `http://dash.{your_server}`
 
-* Open http://dash.{your_server}/users/logout in your browser and check if you get a JSON response that says you're not logged in
+* Open `http://dash.{your_server}/users/logout` in your browser and check if you get a JSON response that says you're not logged in
 
 * Let Dash know about your server by running this command in Terminal:
 
