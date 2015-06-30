@@ -6,7 +6,6 @@
 /bootstrap/compiled.php
 .env.*.php
 .env.php
-composer.lock
 .DS_Store
 Thumbs.db
 Annotations.paw
