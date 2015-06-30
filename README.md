@@ -45,7 +45,7 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 	ssh -t dokku@mydokku.com config:set dash \
 	APP_ENV=production \
 	APP_FALLBACK_LOCAL=en \
-	APP_KEY=Uoth7eengeeH6eize0eic3Iegoo8aap0 \
+	APP_KEY=SomeRandom32CharacterKey \
 	APP_LOCALE=en \
 	CACHE_DRIVER=file \
 	DB_CONNECTION=mysql \
@@ -61,7 +61,6 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 
 * Get your server's URL: `ssh -t dokku@mydokku.com  url dash`
 > *Results*: `http://dash.mydokku.com`
-
 
 * Open http://dash.mydokku.com/users/logout in your browser and check if you get a JSON response that says you're not logged in
 
