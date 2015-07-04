@@ -1,6 +1,6 @@
 # Dash Annotations Server
 
-Follow these instructions if you want to set up your own annotation server.
+Follow these instructions if you want to set up your own annotation server for [Dash](https://kapeli.com/dash).
 
 ## Installation
 
