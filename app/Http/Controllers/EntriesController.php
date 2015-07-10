@@ -86,7 +86,7 @@ class EntriesController extends Controller {
             {
                 $response["team_entries"] = $team_entries;
             }
-            return $response;
+            return json_encode($response);
         }
         return json_encode(["status" => "success"]);
     }
@@ -675,7 +675,7 @@ class EntriesController extends Controller {
                     </div>
                 </body>
             </html>';
-            return ["status" => "success", "body" => $entry->body, "body_rendered" => $body, "teams" => $my_teams, "global_moderator" => $global_moderator];
+            return json_encode(["status" => "success", "body" => $entry->body, "body_rendered" => $body, "teams" => $my_teams, "global_moderator" => $global_moderator]);
         }
         return json_encode(['status' => 'error', 'message' => 'Error. Logout and try again']);
     }
