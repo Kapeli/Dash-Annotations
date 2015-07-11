@@ -18,6 +18,9 @@ Follow these instructions if you want to set up your own annotation server for [
 ```bash
 # Repeat on every Mac that will connect to your server:
 defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_server}"
+
+# To go back to the default server:
+defaults delete com.kapeli.dashdoc AnnotationsCustomServer
 ```
 
 * If you encounter any issues, [let me know](https://github.com/Kapeli/Dash-Annotations/issues/new)!
@@ -56,6 +59,9 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 ```bash
 # Repeat on every Mac that will connect to your server:
 defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://dash.{your_server}"
+
+# To go back to the default server:
+defaults delete com.kapeli.dashdoc AnnotationsCustomServer
 ```
 
 * If you encounter any issues, [let me know](https://github.com/Kapeli/Dash-Annotations/issues/new)!
