@@ -22,6 +22,28 @@ defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://{your_serve
 
 * If you encounter any issues, [let me know](https://github.com/Kapeli/Dash-Annotations/issues/new)!
 
+### Docker 
+
+* Clone this Repo
+* Build the Image `docker-compose build`
+* Generate your [Github Token](https://github.com/settings/tokens) and add it to the docker-compose.yml
+* Set your APP_KEY Variable in the docker-compose.yml
+* Start the Service `docker-compose up -d`
+* Add the ProxyNginx.conf to your Nginx Sites and edit your server_name
+* Have Fun
+
+
+* Open `http://dash.{your_server}/users/logout` in your browser and check if you get a JSON response that says you're not logged in
+* Let Dash know about your server by running this command in Terminal:
+
+```bash
+# Repeat on every Mac that will connect to your server:
+defaults write com.kapeli.dashdoc AnnotationsCustomServer "http(s)://dash.{your_server}"
+```
+
+* If you encounter any issues, [let me know](https://github.com/Kapeli/Dash-Annotations/issues/new)!
+
+
 ### Dokku
 > https://github.com/dokku-alt/dokku-alt
 
