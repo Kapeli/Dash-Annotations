@@ -1,0 +1,19 @@
+db:
+  image: mariadb
+  environment:
+    - MYSQL_ROOT_PASSWORD=dash
+    - MYSQL_USER=dash
+    - MYSQL_PASSWORD=dash
+    - MYSQL_DATABASE=annotations
+dash:
+  build: .
+  links:
+    - db:db
+  ports:
+    - "127.0.0.1:9002:9000"
+  environment:
+    - TOKEN=
+    - DB_USER=dash
+    - DB_PASSWORD=dash
+    - DB_DATABASE=annotations
+    - APP_KEY=
