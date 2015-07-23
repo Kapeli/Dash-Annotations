@@ -11,6 +11,16 @@ function remove_prefix($string, $prefix)
     return $string;
 }
 
+function has_prefix($string, $prefix)
+{
+    return substr(strtolower($string), 0, strlen($prefix)) == strtolower($prefix);
+}
+
+function has_suffix($string, $suffix)
+{
+    return substr(strtolower($string), strlen($string)-strlen($suffix), strlen($suffix)) == strtolower($suffix);
+}
+
 class Identifier extends Eloquent {
 
     public static function IdentifierFromDictionary($dict)
@@ -30,6 +40,36 @@ class Identifier extends Eloquent {
 
     public function trim()
     {
+        if($this->docset_filename == 'prerelease')
+        {
+            if(has_prefix($this->page_path, 'ios/'))
+            {
+                $this->docset_filename = "com.apple.adc.documentation.AppleiOS.iOSLibrary";
+                $this->page_path = substr($this->page_path, strlen('ios/'));
+            }
+            else if(has_prefix($this->page_path, 'mac/'))
+            {
+                $this->docset_filename = "com.apple.adc.documentation.OSX";
+                $this->page_path = substr($this->page_path, strlen('mac/'));
+            }
+        }
+        else if($this->docset_filename == "ios")
+        {
+            $this->docset_filename = "com.apple.adc.documentation.iOS";
+        }
+        else if($this->docset_filename == "mac")
+        {
+            $this->docset_filename = "com.apple.adc.documentation.OSX";
+        }
+        else if(has_suffix($this->docset_filename, "AppleOSX.CoreReference"))
+        {
+            $this->docset_filename = "com.apple.adc.documentation.OSX";
+        }
+        else if(has_suffix($this->docset_filename, "AppleiOS.iOSLibrary"))
+        {
+            $this->docset_filename = "com.apple.adc.documentation.iOS";
+        }
+
         $docset_filename = $this->docset_filename;
         $docset_filename = preg_replace('/\\.docset$/', '', $docset_filename);
         $docset_filename = preg_replace('/[0-9]+\.*[0-9]+(\.*[0-9]+)*/', '', $docset_filename); // remove versions
