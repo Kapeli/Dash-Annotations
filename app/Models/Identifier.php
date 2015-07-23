@@ -44,7 +44,7 @@ class Identifier extends Eloquent {
         {
             if(has_prefix($this->page_path, 'ios/'))
             {
-                $this->docset_filename = "com.apple.adc.documentation.AppleiOS.iOSLibrary";
+                $this->docset_filename = "com.apple.adc.documentation.iOS";
                 $this->page_path = substr($this->page_path, strlen('ios/'));
             }
             else if(has_prefix($this->page_path, 'mac/'))
