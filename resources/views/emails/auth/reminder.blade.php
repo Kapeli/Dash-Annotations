@@ -6,7 +6,7 @@
 	<body>
 		<div>
 			<P>Your reset token is: {{{ $token }}}</P>
-			<P>The token will expire in 60 minutes.</P>
+			<P>This token will expire in 60 minutes.</P>
 		</div>
 	</body>
 </html>
