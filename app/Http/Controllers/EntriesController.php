@@ -324,6 +324,10 @@ class EntriesController extends Controller {
         {
             $entry_id = Request::input('entry_id');
             $vote_type = Request::input('vote_type');
+            if($vote_type > 1 || $vote_type < -1)
+            {
+                return json_encode(['status' => 'error', 'message' => 'Error. Logout and try again']);
+            }
             $entry = Entry::where('id', '=', $entry_id)->first();
             if($entry)
             {
