@@ -446,6 +446,11 @@ class EntriesController extends Controller {
                         pre code {
                             border: none;
                         }
+                        pre {
+                          overflow: auto;
+                          word-wrap: normal;
+                          white-space: pre;
+                        }
 
                         /* Pygmentize theme: Friendly */
                         .highlight .hll { background-color: #ffffcc }
