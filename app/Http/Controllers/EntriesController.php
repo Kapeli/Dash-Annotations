@@ -123,6 +123,10 @@ class EntriesController extends Controller {
                                 {
                                     return json_encode(['status' => 'error', 'message' => "Beta users can't make public annotations"]);
                                 }
+                                else if(isset($license['is_promo']) && $license['is_promo'])
+                                {
+                                    return json_encode(['status' => 'error', 'message' => $license['promo_name']." users can't make public annotations"]);
+                                }
                                 return json_encode(['status' => 'error', 'message' => 'You are banned from making public annotations']);
                             }
                         }
@@ -131,6 +135,10 @@ class EntriesController extends Controller {
                             if(isset($license['is_beta']) && $license['is_beta'])
                             {
                                 // skip check for beta users
+                            }
+                            else if(isset($license['is_promo']) && $license['is_promo'])
+                            {
+                                // skip check for promo users
                             }
                             else if(isset($license['is_app_store']) && $license['is_app_store'])
                             {
