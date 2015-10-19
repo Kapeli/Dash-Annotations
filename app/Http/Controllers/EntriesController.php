@@ -691,7 +691,7 @@ class EntriesController extends Controller {
                     </div>
                     <script>'.autolinker_js().'
                     var body = document.getElementById("dash-annotation-body");
-                    body.innerHTML = Autolinker.link(body.innerHTML, {newWindow:false, stripPrefix:false});
+                    body.innerHTML = Autolinker.link(body.innerHTML, {newWindow: false, stripPrefix: false, phone: false, twitter: false});
                     </script>
                 </body>
             </html>';
