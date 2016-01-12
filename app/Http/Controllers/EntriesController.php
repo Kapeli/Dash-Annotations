@@ -457,7 +457,7 @@ class EntriesController extends Controller {
                         pre {
                           overflow: auto;
                           word-wrap: normal;
-                          white-space: nowrap;
+                          white-space: pre;
                         }
 
                         code {
