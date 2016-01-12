@@ -457,7 +457,11 @@ class EntriesController extends Controller {
                         pre {
                           overflow: auto;
                           word-wrap: normal;
-                          white-space: pre;
+                          white-space: nowrap;
+                        }
+
+                        code {
+                            white-space: nowrap;
                         }
 
                         /* Pygmentize theme: Friendly */
