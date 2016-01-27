@@ -18,7 +18,7 @@ class CreateEntriesTable extends Migration {
 		    $table->longText('page_path');
 		    $table->string('page_title', 340);
 		    $table->longText('httrack_source');
-		    $table->boolean('banned_from_public');
+		    $table->boolean('banned_from_public')->default(FALSE);
 		    $table->timestamps();
 		});
 
@@ -26,7 +26,7 @@ class CreateEntriesTable extends Migration {
 		{
 		    $table->increments('id');
 		    $table->longText('license');
-		    $table->boolean('banned_from_public');
+		    $table->boolean('banned_from_public')->default(FALSE);
 		    $table->timestamps();
 		});
 
@@ -45,7 +45,7 @@ class CreateEntriesTable extends Migration {
 		    $table->integer('user_id')->unsigned();
 		    $table->foreign('user_id')->references('id')->on('users');
 		    $table->boolean('public');
-		    $table->boolean('removed_from_public');
+		    $table->boolean('removed_from_public')->default(FALSE);
 		    $table->integer('score');
 		    $table->timestamps();
 		});
@@ -56,7 +56,7 @@ class CreateEntriesTable extends Migration {
 		    $table->foreign('entry_id')->references('id')->on('entries');
 		    $table->integer('team_id')->unsigned();
 		    $table->foreign('team_id')->references('id')->on('teams');
-		    $table->boolean('removed_from_team');
+		    $table->boolean('removed_from_team')->default(FALSE);
 		    $table->timestamps();
 		});
 		Schema::create('votes', function($table)
