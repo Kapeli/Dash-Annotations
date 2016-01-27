@@ -464,6 +464,10 @@ class EntriesController extends Controller {
                             white-space: nowrap;
                         }
 
+                        pre code {
+                            white-space: pre;
+                        }
+                        
                         /* Pygmentize theme: Friendly */
                         .highlight .hll { background-color: #ffffcc }
                         .highlight .c { color: #60a0b0; font-style: italic } /* Comment */
