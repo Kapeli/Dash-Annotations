@@ -18,6 +18,12 @@ class ForgotController extends Controller {
 			$credentials = array('email' => $email);
 			$response = $this->passwords->sendResetLink($credentials, function($message)
 			{
+				if(file_exists('annotations.dkim.private'))
+				{
+					$privateKey = file_get_contents('annotations.dkim.private');
+					$signer = new Swift_Signers_DKIMSigner($privateKey, "kapeli.com", "annotations");
+					$message->attachSigner($signer);
+				}
 			    $message->subject('Password Reset');
 			});
 			switch ($response)

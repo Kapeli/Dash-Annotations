@@ -6,6 +6,7 @@
 /bootstrap/compiled.php
 .env.*.php
 .env.php
+annotations.dkim.*
 .DS_Store
 Thumbs.db
 Annotations.paw
