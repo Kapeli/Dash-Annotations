@@ -3,6 +3,7 @@
 use Auth, Request, Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Contracts\Auth\PasswordBroker;
+use Swift_Signers_DKIMSigner;
 
 class ForgotController extends Controller {
 	public function __construct(PasswordBroker $passwords)
@@ -18,9 +19,10 @@ class ForgotController extends Controller {
 			$credentials = array('email' => $email);
 			$response = $this->passwords->sendResetLink($credentials, function($message)
 			{
-				if(file_exists('annotations.dkim.private'))
+
+				if(file_exists('../annotations.dkim.private'))
 				{
-					$privateKey = file_get_contents('annotations.dkim.private');
+					$privateKey = file_get_contents('../annotations.dkim.private');
 					$signer = new Swift_Signers_DKIMSigner($privateKey, "kapeli.com", "annotations");
 					$message->attachSigner($signer);
 				}
