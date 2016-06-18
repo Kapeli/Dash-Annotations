@@ -47,6 +47,10 @@ class Identifier extends Eloquent {
         $this->docset_filename = $docset_filename;
         $this->trim_apple_docset_names();
 
+        if($this->docset_filename == "Apple_API_Reference")
+        {
+            $httrack_source = str_replace("?language=objc", "", $httrack_source);
+        }
         $page_path = $this->page_path;
         $page_path = str_replace("https://", "http://", $page_path);
         $page_path = str_replace("swiftdoc.org/swift-2/", "swiftdoc.org/", $page_path);
@@ -107,6 +111,11 @@ class Identifier extends Eloquent {
         {
             $toMatch = ['docset_filename' => $this->docset_filename,
                         'httrack_source' => $this->httrack_source,
+                       ];
+        }
+        if($this->docset_filename == "Apple_API_Reference" && !empty($this->httrack_source))
+        {
+            $toMatch = ['httrack_source' => $this->httrack_source,
                        ];
         }
         return Identifier::where($toMatch)->first();
