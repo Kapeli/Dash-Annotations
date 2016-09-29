@@ -624,6 +624,10 @@ class EntriesController extends Controller {
                             text-decoration: none !important;
                         }
 
+                        hr {
+                            border-top: 1px solid #666666;
+                        }
+
                     </style>
                 </head>
                 <body>
