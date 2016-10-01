@@ -50,7 +50,7 @@ class Identifier extends Eloquent {
         if($this->docset_filename == "Apple_API_Reference")
         {
             $this->httrack_source = str_replace("?language=objc", "", $this->httrack_source);
-            $this->httrack_source = str_replace("/ns", "", $this->httrack_source);
+            $this->httrack_source = str_replace("/ns", "/", $this->httrack_source);
         }
         $page_path = $this->page_path;
         $page_path = str_replace("https://", "http://", $page_path);
