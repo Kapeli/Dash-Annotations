@@ -467,6 +467,10 @@ class EntriesController extends Controller {
                         pre code {
                             white-space: pre;
                         }
+
+                        img {
+                            max-width: 100%;
+                        }
                         
                         /* Pygmentize theme: Friendly */
                         .highlight .hll { background-color: #ffffcc }
