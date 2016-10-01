@@ -46,10 +46,11 @@ class Identifier extends Eloquent {
         $docset_filename = trim(str_replace(range(0,9),'',$docset_filename)); // remove all numbers
         $this->docset_filename = $docset_filename;
         $this->trim_apple_docset_names();
-
+    
         if($this->docset_filename == "Apple_API_Reference")
         {
             $this->httrack_source = str_replace("?language=objc", "", $this->httrack_source);
+            $this->httrack_source = str_replace("/ns", "", $this->httrack_source);
         }
         $page_path = $this->page_path;
         $page_path = str_replace("https://", "http://", $page_path);
