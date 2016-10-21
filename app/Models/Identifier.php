@@ -51,6 +51,7 @@ class Identifier extends Eloquent {
         {
             $this->httrack_source = str_replace("?language=objc", "", $this->httrack_source);
             $this->httrack_source = str_replace("/ns", "/", $this->httrack_source);
+            $this->httrack_source = str_replace("https://", "", $this->httrack_source);
         }
         $page_path = $this->page_path;
         $page_path = str_replace("https://", "http://", $page_path);
