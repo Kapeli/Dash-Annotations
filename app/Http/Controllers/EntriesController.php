@@ -632,6 +632,14 @@ class EntriesController extends Controller {
                             border-top: 1px solid #666666;
                         }
 
+                        blockquote {
+                            padding: 0 1em;
+                            color: #555;
+                            border-left: 0.25em solid #999;
+                            margin-left: 0;
+                            font-size:inherit;
+                        }
+
                     </style>
                 </head>
                 <body>
