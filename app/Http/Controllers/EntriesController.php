@@ -638,6 +638,7 @@ class EntriesController extends Controller {
                             border-left: 0.25em solid #999;
                             margin-left: 0;
                             font-size:inherit;
+                            margin-bottom: 10px;
                         }
 
                     </style>
