@@ -644,6 +644,9 @@ class EntriesController extends Controller {
                             margin-bottom: 10px;
                         }
 
+                        .dash-dark blockquote {
+                            color: #ddd;
+                        }
                     </style>
                 </head>
                 <body>
