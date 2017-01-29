@@ -444,6 +444,9 @@ class EntriesController extends Controller {
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
                     <style>
+                        body.dash-dark {
+                            color: white;
+                        }
                         code {
                             color: black;
                             background-color: #f5f5f5;
