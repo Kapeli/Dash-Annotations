@@ -474,6 +474,74 @@ class EntriesController extends Controller {
                         img {
                             max-width: 100%;
                         }
+
+                        code, kbd, pre, samp {
+                            font-family: "SF Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
+                        }
+
+                        
+                        @font-face {
+                            font-family: "SF Mono";
+                            src: local("SFMono-Light");
+                            font-weight: 100;
+                            font-style: normal;
+                        }
+
+                        @font-face {
+                            font-family: "SF Mono";
+                            src: local("SFMono-Light");
+                            font-weight: 200;
+                            font-style: normal;
+                        }
+
+                        @font-face {
+                            font-family: "SF Mono";
+                            src: local("SFMono-Light");
+                            font-weight: 300;
+                            font-style: normal;
+                        }
+
+                        @font-face {
+                            font-family: "SF Mono";
+                            src: local("SFMono-Regular");
+                            font-weight: 400;
+                            font-style: normal;
+                        }
+
+                        @font-face {
+                            font-family: "SF Mono";
+                            src: local("SFMono-Medium");
+                            font-weight: 500;
+                            font-style: normal;
+                        }
+
+                        @font-face {
+                            font-family: "SF Mono";
+                            src: local("SFMono-Semibold");
+                            font-weight: 600;
+                            font-style: normal;
+                        }
+
+                        @font-face {
+                            font-family: "SF Mono";
+                            src: local("SFMono-Bold");
+                            font-weight: 700;
+                            font-style: normal;
+                        }
+
+                        @font-face {
+                            font-family: "SF Mono";
+                            src: local("SFMono-Bold");
+                            font-weight: 800;
+                            font-style: normal;
+                        }
+
+                        @font-face {
+                            font-family: "SF Mono";
+                            src: local("SFMono-Heavy");
+                            font-weight: 900;
+                            font-style: normal;
+                        }
                         
                         /* Pygmentize theme: Friendly */
                         .highlight .hll { background-color: #ffffcc }
