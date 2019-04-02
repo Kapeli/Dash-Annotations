@@ -36,7 +36,7 @@ class EntriesController extends Controller {
                                                         ->where('removed_from_public', '!=', 1)
                                                         ->where('score', '>', $minimum_public_score)->get();
                 $own_entries = $identifier->entries()->where('user_id', '=', $user->id)->get();
-                if(count($team_ids))
+                if(smart_count($team_ids))
                 {
                     $team_entries = $identifier->entries()->whereHas('teams', function($query) use ($user, $team_ids)
                                                           {
@@ -69,15 +69,15 @@ class EntriesController extends Controller {
             }
 
             $response = ["status" => "success"];
-            if(count($public_entries))
+            if(smart_count($public_entries))
             {
                 $response["public_entries"] = $public_entries;
             }
-            if(count($own_entries))
+            if(smart_count($own_entries))
             {
                 $response["own_entries"] = $own_entries;
             }
-            if(count($team_entries))
+            if(smart_count($team_entries))
             {
                 $response["team_entries"] = $team_entries;
             }
@@ -424,7 +424,7 @@ class EntriesController extends Controller {
                         }
                     }
                 }
-                if(!$entry->public && !count($my_teams) && $entry->user_id != $user->id)
+                if(!$entry->public && !smart_count($my_teams) && $entry->user_id != $user->id)
                 {
                     return json_encode(['status' => 'error', 'message' => 'Error. Logout and try again']);
                 }
@@ -720,7 +720,7 @@ class EntriesController extends Controller {
                 <body>
                     <div class="container-fluid">';
 
-            if($entry->public || count($my_teams))
+            if($entry->public || smart_count($my_teams))
             {
                 $voted_up = "";
                 $voted_down = "";
@@ -755,7 +755,7 @@ class EntriesController extends Controller {
                 ++$i;
                 if(strlen($team_string))
                 {
-                    $team_string .= (count($my_teams) == $i) ? " and " : ", ";
+                    $team_string .= (smart_count($my_teams) == $i) ? " and " : ", ";
                 }
                 $team_string .= '<u>'.htmlentities($team['name'], ENT_QUOTES).'</u>';
             }
@@ -778,7 +778,7 @@ class EntriesController extends Controller {
                 if($team_moderator)
                 {
                     $body .= '&nbsp;<a class="dash-internal" href="#dashInternalRemoveFromTeams"><kbd class="actions delete">Remove From Team';
-                    if(count($my_teams) > 1)
+                    if(smart_count($my_teams) > 1)
                     {
                         $body .= 's';
                     }
@@ -798,6 +798,15 @@ class EntriesController extends Controller {
         }
         return json_encode(['status' => 'error', 'message' => 'Error. Logout and try again']);
     }
+}
+
+function smart_count($array)
+{
+    if(empty($array) || !is_array($array))
+    {
+        return 0;
+    }
+    return count($array);
 }
 
 function in_arrayi($needle, $haystack)
