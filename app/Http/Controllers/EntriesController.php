@@ -802,11 +802,11 @@ class EntriesController extends Controller {
 
 function smart_count($array)
 {
-    if(empty($array) || !is_array($array))
+    if(is_array($array) || $array instanceof Countable) 
     {
-        return 0;
+        return count($array);
     }
-    return count($array);
+    return 0;
 }
 
 function in_arrayi($needle, $haystack)
