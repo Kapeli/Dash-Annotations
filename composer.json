@@ -8,8 +8,8 @@
         "laravel/lumen-framework": "5.1.*",
         "illuminate/mail": "5.*",
         "vlucas/phpdotenv": "~1.0",
-        "Kapeli/php-markdown": "1.4.*@dev",
-        "pear/html_safe": "dev-master",
+        "kapeli/php-markdown": "1.4.*@dev",
+        "pear/html_safe": "dev-trunk",
         "ext-mbstring" : "*",
         "ext-tokenizer": "*",
         "php" : "~7.2.0"
@@ -57,7 +57,10 @@
             }
         ],
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
     },
     "scripts": {
         "post-install-cmd": [
