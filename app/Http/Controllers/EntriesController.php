@@ -140,6 +140,10 @@ class EntriesController extends Controller {
                             {
                                 // skip check for promo users
                             }
+                            else if(isset($license['is_subscribed']) && $license['is_subscribed'])
+                            {
+                                // skip check for subscribed users
+                            }
                             else if(isset($license['is_app_store']) && $license['is_app_store'])
                             {
                                 if(!DashLicenseUtil::check_itunes_receipt($license))
