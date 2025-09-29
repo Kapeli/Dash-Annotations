@@ -4,44 +4,53 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
-	| Default Authentication Driver
+	| Authentication Defaults
 	|--------------------------------------------------------------------------
 	|
-	| This option controls the authentication driver that will be utilized.
-	| This driver manages the retrieval and authentication of the users
-	| attempting to get access to protected areas of your application.
-	|
-	| Supported: "database", "eloquent"
+	| This option controls the default authentication "guard" and password
+	| reset options for your application.
 	|
 	*/
 
-	'driver' => 'eloquent',
+	'defaults' => [
+		'guard' => 'web',
+		'passwords' => 'users',
+	],
 
 	/*
 	|--------------------------------------------------------------------------
-	| Authentication Model
+	| Authentication Guards
 	|--------------------------------------------------------------------------
 	|
-	| When using the "Eloquent" authentication driver, we need to know which
-	| Eloquent model should be used to retrieve your users. Of course, it
-	| is often just the "User" model but you may use whatever you like.
+	| Next, you may define every authentication guard for your application.
+	| A default configuration has been defined here which uses session storage.
 	|
 	*/
 
-	'model' => 'App\User',
+	'guards' => [
+		'web' => [
+			'driver' => 'session',
+			'provider' => 'users',
+		],
+	],
 
 	/*
 	|--------------------------------------------------------------------------
-	| Authentication Table
+	| User Providers
 	|--------------------------------------------------------------------------
 	|
-	| When using the "Database" authentication driver, we need to know which
-	| table should be used to retrieve your users. We have chosen a basic
-	| default value but you may easily change it to any table you like.
+	| All authentication drivers have a user provider. This defines how the
+	| users are actually retrieved out of your database or other storage
+	| mechanisms used by this application to persist your user's data.
 	|
 	*/
 
-	'table' => 'users',
+	'providers' => [
+		'users' => [
+			'driver' => 'eloquent',
+			'model' => App\User::class,
+		],
+	],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,16 +61,14 @@ return [
 	| that is your password reset e-mail. You can also set the name of the
 	| table that maintains all of the reset tokens for your application.
 	|
-	| The expire time is the number of minutes that the reset token should be
-	| considered valid. This security feature keeps tokens short-lived so
-	| they have less time to be guessed. You may change this as needed.
-	|
 	*/
 
-	'password' => [
-		'email' => 'emails.auth.reminder',
-		'table' => 'password_reminders',
-		'expire' => 60,
+	'passwords' => [
+		'users' => [
+			'provider' => 'users',
+			'table' => 'password_reminders',
+			'expire' => 60,
+		],
 	],
 
 ];

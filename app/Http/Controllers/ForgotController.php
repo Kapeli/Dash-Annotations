@@ -1,15 +1,13 @@
 <?php namespace App\Http\Controllers;
 
-use Auth, Request, Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use App\User;
 use Illuminate\Contracts\Auth\PasswordBroker;
-use Swift_Signers_DKIMSigner;
 
 class ForgotController extends Controller {
-	public function __construct(PasswordBroker $passwords)
-	{
-		$this->passwords = $passwords;
-	}
 
 	public function request()
 	{
@@ -17,17 +15,7 @@ class ForgotController extends Controller {
 		if(!empty($email))
 		{
 			$credentials = array('email' => $email);
-			$response = $this->passwords->sendResetLink($credentials, function($message)
-			{
-
-				if(file_exists('../annotations.dkim.private'))
-				{
-					$privateKey = file_get_contents('../annotations.dkim.private');
-					$signer = new Swift_Signers_DKIMSigner($privateKey, "kapeli.com", "annotations");
-					$message->attachSigner($signer);
-				}
-			    $message->subject('Password Reset');
-			});
+			$response = Password::sendResetLink($credentials);
 			switch ($response)
 			{
 			    case PasswordBroker::RESET_LINK_SENT:
@@ -59,7 +47,7 @@ class ForgotController extends Controller {
 		    	);
 		    	$credentials['password_confirmation'] = $credentials['password'];
 		    	$credentials['username'] = $username;
-		    	$result = $this->passwords->reset($credentials, function($user, $password)
+		    	$result = Password::reset($credentials, function($user, $password)
 		    	{
 		    		$user->password = Hash::make($password);
 		    		$user->save();

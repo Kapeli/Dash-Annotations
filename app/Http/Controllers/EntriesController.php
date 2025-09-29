@@ -1,6 +1,9 @@
 <?php namespace App\Http\Controllers;
 
-use Validator, Request, Auth, Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Team;
 use App\Identifier;
@@ -806,8 +809,11 @@ class EntriesController extends Controller {
 
 function smart_count($array)
 {
-    $count = @count($array);
-    return $count;
+    if($array === null || !is_countable($array))
+    {
+        return 0;
+    }
+    return count($array);
 }
 
 function in_arrayi($needle, $haystack)

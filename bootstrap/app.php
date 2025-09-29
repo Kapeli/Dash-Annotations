@@ -21,11 +21,45 @@ $dotenv->load();
 |
 */
 
-$app = new Laravel\Lumen\Application;
+$app = new Laravel\Lumen\Application(
+    dirname(__DIR__)
+);
 
 $app->withFacades();
 
 $app->withEloquent();
+
+// Register app configuration (encryption key)
+$app->configure('app');
+
+// Register cache service
+$app->configure('cache');
+
+// Register mail configuration
+$app->configure('mail');
+$app->register(Illuminate\Mail\MailServiceProvider::class);
+$app->bind(Illuminate\Contracts\Mail\Factory::class, function($app)
+{
+    return $app->make('mail.manager');
+});
+$app->register(Illuminate\Notifications\NotificationServiceProvider::class);
+
+// Register session service
+$app->configure('session');
+$app->register(Illuminate\Session\SessionServiceProvider::class);
+
+// Register auth configuration
+$app->configure('auth');
+$app->register(Illuminate\Auth\AuthServiceProvider::class);
+$app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
+
+// Register cookie service
+$app->singleton('cookie', function() use ($app)
+{
+    return $app->loadComponent('session', 'Illuminate\Cookie\CookieServiceProvider', 'cookie');
+});
+
+$app->bind('Illuminate\Contracts\Cookie\QueueingFactory', 'cookie');
 
 /*
 |--------------------------------------------------------------------------
@@ -60,11 +94,9 @@ $app->singleton(
 */
 
 $app->middleware([
-    'Illuminate\Cookie\Middleware\EncryptCookies',
-    // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-    'Illuminate\Session\Middleware\StartSession',
-    // 'Illuminate\View\Middleware\ShareErrorsFromSession',
-    // 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
+    \Illuminate\Cookie\Middleware\EncryptCookies::class,
+    \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+    \Illuminate\Session\Middleware\StartSession::class,
 ]);
 
 // $app->routeMiddleware([
@@ -95,6 +127,9 @@ $app->middleware([
 |
 */
 
-require __DIR__.'/../app/Http/routes.php';
+$app->router->group([], function($router)
+{
+    require __DIR__.'/../app/Http/routes.php';
+});
 
 return $app;
