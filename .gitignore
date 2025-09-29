@@ -11,3 +11,7 @@ annotations.dkim.*
 Thumbs.db
 Annotations.paw
 /storage/framework/compiled.php
+
+# Claude Code files
+CLAUDE.md
+.claude/
