@@ -2,6 +2,9 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+// Temporarily suppress strict types warnings during Lumen 10.x transition
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 
